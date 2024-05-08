@@ -1,6 +1,7 @@
 package com.jrr997.reggie.filter;
 
 import com.alibaba.fastjson2.JSON;
+import com.jrr997.reggie.common.BaseContext;
 import com.jrr997.reggie.common.Result;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -30,8 +31,7 @@ public class LoginCheckFilter  implements Filter {
         };
 
         Boolean pass = check(urls, request);
-        log.info("pass: {}", pass);
-        log.info("uri: {}", request.getRequestURI());
+
         if (pass) {
             filterChain.doFilter(request, response);
             return;
@@ -40,6 +40,9 @@ public class LoginCheckFilter  implements Filter {
 
         // 已登录时放行
         if (request.getSession().getAttribute("employee") != null) {
+            String empId = request.getSession().getAttribute("employee").toString();
+            BaseContext.setCurrentId(empId);
+
             log.info("已登录");
             filterChain.doFilter(request, response);
             return;
