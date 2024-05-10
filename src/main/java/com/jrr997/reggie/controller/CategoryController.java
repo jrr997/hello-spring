@@ -9,11 +9,7 @@ import com.jrr997.reggie.entity.Category;
 import com.jrr997.reggie.entity.Employee;
 import com.jrr997.reggie.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -40,7 +36,20 @@ public class CategoryController {
 
     @DeleteMapping()
     public Result<String> page(Long id){
-        categoryService.removeById(id);
+        categoryService.remove(id);
         return Result.success("删除成功");
+    }
+
+    @PostMapping()
+    public Result<String> save(@RequestBody Category category){
+
+        categoryService.save(category);
+        return Result.success("保存成功");
+    }
+
+    @PutMapping()
+    public Result<String> update(@RequestBody Category category){
+        categoryService.updateById(category);
+        return Result.success("更新成功");
     }
 }

@@ -22,7 +22,7 @@ public class Generator {
         String password="123456";
 
         //数据库表的设置
-        String[] listTable = {"category"};  //设置需要自动代码生成的表名
+        String[] listTable = {"setmeal"};  //设置需要自动代码生成的表名
         String[] listTableSuffix = {"_b"};  //设置需要自动代码生成的表名
         String[] listTablePrefix = {"t_","c_"};  //设置需要自动代码生成的表名
 
