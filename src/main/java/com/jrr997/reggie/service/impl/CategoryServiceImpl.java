@@ -42,5 +42,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         if (setmealService.count(setmealQueryWrapper) > 0) {
             throw new CustomException("菜品分类下存在套餐，无法删除");
         }
+        removeById(id);
     }
 }
