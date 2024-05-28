@@ -11,6 +11,8 @@ import com.jrr997.reggie.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 菜品及套餐分类 前端控制器
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+    private CategoryService categoryService1;
 
     @GetMapping("/page")
     public Result<Page<Category>> page(int page, int pageSize){
@@ -51,5 +54,11 @@ public class CategoryController {
     public Result<String> update(@RequestBody Category category){
         categoryService.updateById(category);
         return Result.success("更新成功");
+    }
+
+    @GetMapping("/list")
+    public Result<List<Category>> update(Number type){
+        List<Category> category = categoryService.lambdaQuery().eq(Category::getType, type).list();
+        return Result.success(category);
     }
 }

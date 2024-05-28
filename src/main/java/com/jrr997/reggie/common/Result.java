@@ -17,7 +17,7 @@ public class Result<T> {
 
     private T data; //数据
 
-    private Map map = new HashMap(); //动态数据
+//    private Map map = new HashMap(); //动态数据
 
     public static <T> Result<T> success(T object) {
         Result<T> r = new Result<T>();
@@ -33,9 +33,9 @@ public class Result<T> {
         return r;
     }
 
-    public Result<T> add(String key, Object value) {
-        this.map.put(key, value);
-        return this;
-    }
+//    public Result<T> add(String key, Object value) {
+//        this.map.put(key, value);
+//        return this;
+//    }
 
 }

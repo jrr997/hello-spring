@@ -22,7 +22,7 @@ public class Generator {
         String password="123456";
 
         //数据库表的设置
-        String[] listTable = {"setmeal"};  //设置需要自动代码生成的表名
+        String[] listTable = {"dish_flavor"};  //设置需要自动代码生成的表名
         String[] listTableSuffix = {"_b"};  //设置需要自动代码生成的表名
         String[] listTablePrefix = {"t_","c_"};  //设置需要自动代码生成的表名
 
@@ -42,7 +42,7 @@ public class Generator {
                     builder.author(author) // 设置作者名
                             .outputDir(System.getProperty("user.dir") + "/src/main/java")   //设置输出路径：项目的 java 目录下【System.getProperty("user.dir")意思是获取到项目所在的绝对路径】
                             .commentDate("yyyy-MM-dd hh:mm:ss")   //注释日期
-                            .dateType(DateType.ONLY_DATE)   //定义生成的实体类中日期的类型 TIME_PACK=LocalDateTime;ONLY_DATE=Date;
+                            .dateType(DateType.TIME_PACK)   //定义生成的实体类中日期的类型 TIME_PACK=LocalDateTime;ONLY_DATE=Date;
                             .fileOverride()   //覆盖之前的文件
 //                            .enableSwagger()   //开启 swagger 模式
                             .disableOpenDir();   //禁止打开输出目录，默认打开

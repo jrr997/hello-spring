@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +32,7 @@ public class Dish implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -85,25 +86,16 @@ public class Dish implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
+    @TableField(fill = FieldFill.INSERT)//插入时填充字段
+    private LocalDateTime createTime;
 
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private Date updateTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)//插入、更新时填充字段，后面的是枚举
+    private LocalDateTime updateTime;
 
-    /**
-     * 创建人
-     */
-    @TableField("create_user")
+    @TableField(fill = FieldFill.INSERT)
     private Long createUser;
 
-    /**
-     * 修改人
-     */
-    @TableField("update_user")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
     /**
