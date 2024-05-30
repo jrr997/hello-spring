@@ -3,11 +3,13 @@ package com.jrr997.reggie.dto;
 import com.jrr997.reggie.entity.Dish;
 import com.jrr997.reggie.entity.DishFlavor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 public class DishDto extends Dish {
     private List<DishFlavor> flavors = new ArrayList<>();
 

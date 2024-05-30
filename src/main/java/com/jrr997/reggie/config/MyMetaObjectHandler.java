@@ -26,7 +26,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
+        String empId = BaseContext.getCurrentId();
         log.info("更新");
-        log.info(metaObject.toString());
+        //因为是更新，所以不用操作创建时间
+
+        metaObject.setValue("updateTime", LocalDateTime.now());
+        metaObject.setValue("updateUser", Long.parseLong(empId));
     }
 }
