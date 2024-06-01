@@ -79,4 +79,20 @@ public class DishController {
         dishService.updateWithFlavors(dishDto);
         return Result.success("更新菜品成功");
     }
-}
+
+    /**
+     * 根据 categoryId 查询菜品
+     */
+    @GetMapping("list")
+    public Result<List<DishDto>> list(Long categoryId){
+        LambdaQueryWrapper<Dish> wrapper = new LambdaQueryWrapper();
+        wrapper.eq(categoryId != null, Dish::getCategoryId, categoryId
+        ).orderByDesc(Dish::getUpdateTime).eq(Dish::getStatus, 1);
+        List<Dish> list = dishService.list(wrapper);
+        List<DishDto> dtoList = list.stream().map(dish -> {
+            DishDto dishDto = new DishDto();
+            BeanUtils.copyProperties(dish, dishDto);
+            return dishDto;
+        }).collect(Collectors.toList());
+        return Result.success(dtoList);
+    }}

@@ -1,16 +1,13 @@
 package com.jrr997.reggie.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -31,7 +28,7 @@ public class Setmeal implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -80,24 +77,24 @@ public class Setmeal implements Serializable {
      * 创建时间
      */
     @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    @TableField("update_time")
-    private Date updateTime;
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
 
     /**
      * 创建人
      */
-    @TableField("create_user")
+    @TableField(value = "create_user", fill = FieldFill.INSERT)
     private Long createUser;
 
     /**
      * 修改人
      */
-    @TableField("update_user")
+    @TableField(value = "update_user", fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
     /**
